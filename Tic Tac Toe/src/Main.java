@@ -16,33 +16,24 @@ import javax.swing.JTextField;
 
 public class Main extends JFrame{
 
+	final static int WIDTH=950;
+	final static int HEIGHT=950;
+	
+	JFrame frame=null;
 	
 	public  Main () {
 		
 		super("Tic Tac Toe");
 		
-		JFrame test=this;
+		frame=this;
 
 		this.setLayout(null);
 		
 		this.setResizable(false);
 
-		this.setSize(950, 950);
+		this.setSize(WIDTH,HEIGHT);
 		
-		this.createBufferStrategy(1);
-		Graphics g=this.getBufferStrategy().getDrawGraphics();
-		File file=new File("res/BackGroundTicTacToe2.jpg");
-		Image img=null;
-		try{
-			img=ImageIO.read(file);
-		}catch(Exception e)
-		{
-			JOptionPane.showMessageDialog(null, "An ERROR Occured while loading the background please restart the game");
-			
-		}
-		
-		
-		this.setContentPane(new ImagePanel(img));
+		displayBackGround();
 		
 		
 		JButton start=new JButton("Start");
@@ -82,7 +73,7 @@ public class Main extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 			
 				new Board(3);
-				test.dispose();
+				frame.dispose();
 				
 			}
 		});
@@ -94,7 +85,7 @@ public class Main extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 			
 				new Credits();
-				test.dispose();
+				frame.dispose();
 				
 			}
 		});
@@ -103,9 +94,29 @@ public class Main extends JFrame{
 			
 			public void actionPerformed(ActionEvent arg0) {
 			
-				test.dispose();
+				frame.dispose();
 			}
 		});
+		
+	}
+	
+	
+	void displayBackGround() {
+		frame.createBufferStrategy(1);
+		Graphics g=this.getBufferStrategy().getDrawGraphics();
+		File file=new File("res/BackGroundTicTacToe2.jpg");
+		Image img=null;
+		try{
+			img=ImageIO.read(file);
+		}catch(Exception e)
+		{
+			JOptionPane.showMessageDialog(null, "An ERROR Occured while loading the background please restart the game");
+			
+		}
+		
+		
+		frame.setContentPane(new ImagePanel(img));
+		
 		
 	}
 }
